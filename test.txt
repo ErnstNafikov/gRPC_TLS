@@ -1,0 +1,11 @@
+python3 -m venv .venv
+
+cd grpc_server
+
+. .venv/bin/activate
+python -m pip install grpcio
+python -m pip install grpcio-tools
+
+python -m server
+
+python -m client
