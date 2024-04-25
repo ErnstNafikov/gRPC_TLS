@@ -9,3 +9,18 @@ python -m pip install grpcio-tools
 python -m server
 
 python -m client
+
+
+docker build -t test_grpc .
+docker run --network=host --name=grpc_cont -d -i -t -p 5000:5000 test_grpc
+docker run --network=host --name=grpc_cont -d -i -t -p 5000:5000 test_grpc
+
+docker logs grpc_cont
+
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting 
+behaviour with the system package manager. It is recommended to use a virtual environment 
+instead: https://pip.pypa.io/warnings/venv
+
+
+RUN \
+ python3 -m pip install --root-user-action=ignore -r requirements.txt --no-cache-dir
