@@ -22,7 +22,13 @@ class ChatServer:
 
     def serve(self):
         print('Starting server...')
-        self._server.add_insecure_port(f'{self._host}:{self._port}')
+        # Загрузка серверного сертификата и закрытого ключа
+        with open('cert/certificate.crt', 'rb') as f:
+            server_cert = f.read()
+        with open('cert/privateKey.key', 'rb') as f:
+            server_key = f.read()
+        server_credentials = grpc.ssl_server_credentials([(server_key, server_cert)])
+        self._server.add_secure_port(f'{self._host}:{self._port}',server_credentials)
         self._server.start()
         print(f'Listening on {self._host}:{self._port}')
         print('Press CTRL+C to stop...')

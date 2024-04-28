@@ -1,0 +1,4 @@
+.venv
+cert/certificate.crt
+cert/privateKey.key
+client/certificate.pem
